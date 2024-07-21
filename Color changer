@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Color Changer',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Color Changer'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  Color _backgroundColor = Colors.white;
+
+  void _changeColor(Color newColor) {
+    setState(() {
+      _backgroundColor = newColor;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      backgroundColor: _backgroundColor,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () => _changeColor(Colors.red),
+              child: Text('Red'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _changeColor(Colors.green),
+              child: Text('Green'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _changeColor(Colors.blue),
+              child: Text('Blue'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _changeColor(Colors.yellow),
+              child: Text('Yellow'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _changeColor(Colors.white),
+              child: Text('White'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
